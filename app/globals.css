@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   BoxOS design tokens — ported from app/lib/core/presentation/app_chrome.dart
+   Dark-first, one restrained neon-cyan accent, sharp/angular geometry.
+   ========================================================================== */
+@theme inline {
+  --color-app-bg: #07080b;
+  --color-app-bg-soft: #0b0d12;
+  --color-app-surface: #101218;
+  --color-app-surface-alt: #161922;
+  --color-app-surface-elevated: #1b1f2a;
+
+  --color-app-border: #1f2330;
+  --color-app-border-strong: #2a2f3d;
+
+  --color-app-text: #f4f5f7;
+  --color-app-muted: #aeb4bd;
+  --color-app-subtle: #767c86;
+
+  --color-app-primary: #00e5ff;
+  --color-app-success: #3ddc97;
+  --color-app-warning: #ffb454;
+  --color-app-danger: #ff5c6e;
+  --color-app-info: #5bc0ff;
+
+  --radius-app-sm: 3px;
+  --radius-app-md: 4px;
+  --radius-app-lg: 6px;
+  --radius-app-xl: 8px;
+
+  --font-display: var(--font-chakra-petch), "Chakra Petch", sans-serif;
+  --font-body: var(--font-inter), Inter, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+}
+
+body {
+  background: var(--color-app-bg);
+  color: var(--color-app-text);
+}
+
+/* Faint cyan blueprint grid, matches _GridPainter (alpha ~0.035, 48px step) */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(0 229 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(0 229 255 / 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Box-cut silhouette: bottom-right corner sliced at 45°, matches BoxCutBorder */
+.clip-boxcut {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%
+  );
+}
+
+.clip-boxcut-lg {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 22px),
+    calc(100% - 22px) 100%,
+    0 100%
+  );
+}
