@@ -1,7 +1,7 @@
 # Production stack for the Hostinger VPS, which already runs Traefik (host network,
 # entrypoints `web`/`websecure`, cert resolver `letsencrypt`).
 #
-# DOMAIN is the hostname the site is served on, e.g. DOMAIN=boxos-app.com; www.DOMAIN
+# DOMAIN is the hostname the site is served on, i.e. DOMAIN=boxos-app.de; www.DOMAIN
 # redirects to it. Both DNS A records must point at the VPS before Traefik can issue
 # the certificates.
 services:
