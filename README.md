@@ -37,3 +37,21 @@ files under `app/` and `components/`.
 npm run build
 npm run lint
 ```
+
+## Deployment
+
+The site runs as a Docker container on a Hostinger VPS behind Traefik.
+
+- `Dockerfile` — multi-stage build of the Next.js standalone output (`output: "standalone"` in
+  `next.config.ts`)
+- `.github/workflows/docker-publish.yml` — builds the image on every push to `main` and pushes it
+  to `ghcr.io/simisimon/boxos-website`
+- `docker-compose.yml` — the stack deployed on the VPS; set `DOMAIN` to the hostname the site is
+  served on, and Traefik handles routing and the TLS certificate
+
+To try the production image locally:
+
+```bash
+docker build -t boxos-website .
+docker run --rm -p 3000:3000 boxos-website
+```

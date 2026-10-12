@@ -1,0 +1,23 @@
+# Production stack for the Hostinger VPS, which already runs Traefik (host network,
+# entrypoints `web`/`websecure`, cert resolver `letsencrypt`).
+#
+# DOMAIN is the hostname the site is served on, e.g. DOMAIN=boxos-app.com; www.DOMAIN
+# redirects to it. Both DNS A records must point at the VPS before Traefik can issue
+# the certificates.
+services:
+  web:
+    image: ghcr.io/simisimon/boxos-website:latest
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.boxos-website.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.boxos-website.entrypoints=websecure
+      - traefik.http.routers.boxos-website.tls.certresolver=letsencrypt
+      - traefik.http.services.boxos-website.loadbalancer.server.port=3000
+      - traefik.http.routers.boxos-website-www.rule=Host(`www.${DOMAIN}`)
+      - traefik.http.routers.boxos-website-www.entrypoints=websecure
+      - traefik.http.routers.boxos-website-www.tls.certresolver=letsencrypt
+      - traefik.http.routers.boxos-website-www.middlewares=boxos-website-www-redirect
+      - traefik.http.middlewares.boxos-website-www-redirect.redirectregex.regex=^https?://www\.(.+)
+      - traefik.http.middlewares.boxos-website-www-redirect.redirectregex.replacement=https://$${1}
+      - traefik.http.middlewares.boxos-website-www-redirect.redirectregex.permanent=true
