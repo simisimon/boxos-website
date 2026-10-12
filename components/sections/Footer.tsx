@@ -11,6 +11,9 @@ export function Footer() {
           <p className="mt-1 text-xs text-app-subtle">
             Operations platform for CrossFit boxes.
           </p>
+          <p className="mt-1 text-xs text-app-subtle">
+            A spare-time project by Sebastian Simon — not a commercial product.
+          </p>
         </div>
         <a
           href={CONTACT_MAILTO}

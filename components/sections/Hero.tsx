@@ -19,6 +19,9 @@ export function Hero() {
 
       <div className="relative mx-auto grid max-w-6xl gap-16 px-6 py-24 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:py-32">
         <div>
+          <div className="mb-5">
+            <Pill label="Spare-time project · in development" intent="primary" />
+          </div>
           <p className="mb-5 font-mono text-xs font-bold uppercase tracking-[0.2em] text-app-primary">
             Operations platform for CrossFit boxes
           </p>
